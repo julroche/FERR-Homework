@@ -64,3 +64,66 @@
 #
 ###############################################################################
 
+puts "Welcome to the Secret Number Game!"
+
+puts "This game was created by Julie Roche"
+
+puts "Please enter your name"
+
+player_name = gets
+
+puts "Hi #{player_name.chomp}!"
+
+puts "You have three tries to guess the secret number between 1 and 10."
+
+guesses_left = 3
+
+puts "You have #{guesses_left} guesses left."
+
+secret_number = 7
+
+puts "Please enter your first guess."
+
+guess = gets.to_i
+
+if guess == secret_number
+	puts "You win.  The number was 7."
+else
+	guesses_left=guesses_left - 1
+	puts "Sorry, that is not the secret number.  You now have #{guesses_left} guesses left."
+
+	if guess > secret_number
+		puts "Your guess was too high.  Please guess a lower number."
+
+	else
+		puts "Your guess was too low.  Please guess a higher number."
+	end
+
+	guess = gets.to_i
+
+		if guess == secret_number
+			puts "You win.  The number was 7."
+		else
+			guesses_left=guesses_left - 1
+			puts "Sorry, that is not the secret number.  You now have #{guesses_left} guesses left."
+
+			if guess > secret_number
+				puts "Your guess was too high.  Please guess a lower number."
+
+			else
+				puts "Your guess was too low.  Please guess a higher number."
+			end
+
+			guess = gets.to_i
+
+				if guess == secret_number
+					puts "You win.  The number was 7."
+				else
+					puts "Sorry, you lose.  The secret number was 7."
+
+				end
+		end
+
+end
+
+
