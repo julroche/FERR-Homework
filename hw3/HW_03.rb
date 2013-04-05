@@ -102,7 +102,7 @@ while guesses_left > 0
 		puts messages[:too_high]
 
 	else  
-		puts puts messages[:too_low]
+		puts messages[:too_low]
 	end
 
   else	#  if players last guess was not correct and they have no guesses left, they lose			
