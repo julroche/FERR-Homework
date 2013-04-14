@@ -27,12 +27,12 @@ class Game
     @guesses_allowed = guesses_allowed
     @set_of_numbers = set_of_numbers
     @current_guess_count = 0
-    player = Player.new
-    @secret_number = SecretNumber.new(@set_of_numbers)
-
     current_guess = nil
     @guesses_left = @guesses_allowed
-  
+
+    player = Player.new
+    
+    @secret_number = SecretNumber.new(@set_of_numbers)  
     @secret_number = @secret_number.mystery_number
   end
 
@@ -66,7 +66,7 @@ class Game
     while @guesses_left > 0
       puts "Please enter a guess."
       @current_guess = $stdin.gets.chomp.to_i
-      self.increment_guess_count(@current_guess_count)
+      increment_guess_count
    
       if self.guess_correct?(@current_guess) 
       exit
@@ -74,10 +74,8 @@ class Game
       elsif @guesses_left == 0
         puts @@messages[:lose]
         puts "The secret number was #{@secret_number}"
-      
       end
     end
-
   end
 
 	# This method checks if the player guessed the correct secret number. 
@@ -88,29 +86,28 @@ class Game
   def guess_correct?(guess)
     
     if guess === @secret_number
-      
       puts @@messages[:win]
       return true
 
     elsif guess > @secret_number
-    puts @@messages[:too_high]
-    guesses_left(@guesses_allowed, @current_guess_count)
+      puts @@messages[:too_high]
+      guesses_left
 
     else  
-    puts @@messages[:too_low]   
-    guesses_left(@guesses_allowed, @current_guess_count)  
+      puts @@messages[:too_low]   
+      guesses_left
     end
       
   end
 
   # This method should increment every time the player guesses incorrectly.
-  def increment_guess_count(number_of_guesses)
-    @current_guess_count = number_of_guesses +=1
+  def increment_guess_count
+    @current_guess_count +=1
   end
 
   # Calculates the guesses the player has left.
-  def guesses_left(guesses_allowed, number_of_guesses)
-    @guesses_left = guesses_allowed - number_of_guesses
+  def guesses_left
+    @guesses_left = @guesses_allowed - @current_guess_count 
     puts "You now have #{@guesses_left} guesses left."
   end
 end
